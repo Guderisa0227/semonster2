@@ -37,4 +37,8 @@ application {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3bef069a4d683754ba30abe2aa69a4298680d9ec
