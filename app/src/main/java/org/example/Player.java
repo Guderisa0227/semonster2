@@ -13,12 +13,20 @@ public class Player {
     this.name = playerName;
   }
 
-  /**
-   * モンスターを5体分drawする．利用するランダムな値(0~4)はrandomNumberListから取得する
-   */
   public void drawMonsters() {
     for (int i = 0; i < 5; i++) {
       this.monsterDeck.add(new Monster(this.randomNumberList.pop(), this.randomNumberList.pop()));
+    }
+  }
+
+  /**
+   * 手札のモンスターを番号付きで表示するメソッド
+   */
+  public void showHand() {
+    System.out.println("Deck:" + this.name);
+    for (int i = 0; i < monsterDeck.size(); i++) {
+      // 選択しやすいように番号を付けて表示
+      System.out.print((i + 1) + ": " + monsterDeck.get(i));
     }
   }
 
@@ -31,5 +39,4 @@ public class Player {
     }
     return sb.toString();
   }
-
 }
