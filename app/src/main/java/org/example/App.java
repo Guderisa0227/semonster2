@@ -5,6 +5,7 @@ package org.example;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner; // 1. Scannerをインポート
 
 public class App {
   final static Random random = new Random();
@@ -16,16 +17,33 @@ public class App {
 
   public static void main(String[] args) {
     System.out.println(new App().getGreeting());
-    SeMonsterGame mf = new SeMonsterGame(createRandomList(10));
-    mf.addPlayer("user");
-    mf.draw("user");
 
+    // 1. プレイヤー名の入力機能を追加
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("プレイヤー名を入力してください > ");
+    String playerName = scanner.next();
+
+    // ゲームの準備 (モンスターを引くために必要な乱数を多めに生成)
+    SeMonsterGame mf = new SeMonsterGame(createRandomList(20));
+
+    // プレイヤーとCPUを追加
+    mf.addPlayer(playerName);
+    mf.addPlayer("CPU");
+
+    // それぞれがモンスターを引く
+    mf.draw(playerName);
+    mf.draw("CPU");
+
+    // 3. バトルを開始
+    mf.battle(playerName, "CPU");
+
+    scanner.close();
   }
 
   /**
    * 指定した数の0~4(maxRandomNumber)のランダムな数値を作成し，LinkedListに格納して返却する
    *
-   * @param randNum
+   * @param count
    * @return
    */
   public static LinkedList<Integer> createRandomList(int count) {
@@ -36,5 +54,4 @@ public class App {
 
     return randNumList;
   }
-
 }
