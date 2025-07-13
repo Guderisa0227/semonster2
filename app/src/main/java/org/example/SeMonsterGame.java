@@ -8,12 +8,19 @@ import java.util.Scanner;
 public class SeMonsterGame {
 
   HashMap<String, Player> playerMap = new HashMap<>();
-  LinkedList<Integer> randomNumberList = new LinkedList<Integer>();
-  private Random random = new Random();
+    LinkedList<Integer> randomNumberList = new LinkedList<Integer>();
+    private Random random; // ← ① new Random() を削除
 
-  SeMonsterGame(LinkedList<Integer> randomNumberList) {
-    this.randomNumberList = randomNumberList;
-  }
+    // ↓ ② テストから乱数を固定できるように、このコンストラクタを丸ごと追加
+    SeMonsterGame(LinkedList<Integer> randomNumberList, Random random) {
+        this.randomNumberList = randomNumberList;
+        this.random = random;
+    }
+
+    // ↓ ③ 元のコンストラクタはこちらを呼び出す形に変更
+    SeMonsterGame(LinkedList<Integer> randomNumberList) {
+        this(randomNumberList, new Random());
+    }
 
   void addPlayer(String playerName) {
     this.playerMap.put(playerName, new Player(randomNumberList, playerName));
