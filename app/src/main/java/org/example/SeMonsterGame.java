@@ -38,7 +38,9 @@ public class SeMonsterGame {
 
       player1.showHand();
       
-      
+      //
+      // ★★★ Start of added input validation logic ★★★
+      //
       int playerChoice = -1;
       while (true) {
         System.out.print("Choose your monster (1-" + player1.monsterDeck.size() + ") > ");
@@ -49,13 +51,15 @@ public class SeMonsterGame {
           System.out.println("Invalid input. Please choose a number from your hand.");
         }
       }
-
+      //
+      // ★★★ End of added input validation logic ★★★
+      //
 
       Monster m1 = player1.monsterDeck.remove(playerChoice - 1); // Adjust for array index
       Monster m2 = player2.monsterDeck.remove(random.nextInt(player2.monsterDeck.size()));
 
       System.out.println(player1.name + " summons " + m1.getName() + "[" + m1.getRare() + "]" + "!");
-      System.out.println(player2.name + " summons " + m2.getName() + "[" + m2.getRare() + "]" + "!");
+      System.out.println(player2.name + " summons " + m2.getName() + "[" + m1.getRare() + "]" + "!");
 
       if (m1.getRare() > m2.getRare()) {
         System.out.println(m1.getName() + " wins!\n");
